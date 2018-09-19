@@ -30,7 +30,7 @@ task clean(type: Delete) {
 // All library versions
 ext {
     // Properties
-    minSdkVersion = 27
+    minSdkVersion = 23
     targetSdkVersion = 27
     compileSdkVersion = 27
 
@@ -51,5 +51,6 @@ ext {
     retrofitGsonVersion = '2.1.0'
     constraintLayoutVersion = '1.1.0'
     picassoVersion = '2.71828'
+    slidingPanelVersion = '3.4.0'
 }
 
