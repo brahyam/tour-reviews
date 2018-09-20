@@ -21,6 +21,8 @@ final class TourDetailsPresenter implements TourDetailsContract.Presenter {
 
     private static final Integer FIRST_PAGE = 1;
 
+    private static final int REVIEWS_PREVIEW_COUNT = 4;
+
     private Tour tour;
 
     private boolean firstLoad = true;
@@ -60,7 +62,6 @@ final class TourDetailsPresenter implements TourDetailsContract.Presenter {
 
     @Override
     public void loadReviews() {
-        Log.d(TAG, "Loading reviews");
         if (tourView != null) {
             tourView.setLoadingIndicator(true);
         }
@@ -78,7 +79,11 @@ final class TourDetailsPresenter implements TourDetailsContract.Presenter {
                     return;
                 }
                 tourView.setLoadingIndicator(false);
-                tourView.showReviews(reviews.subList(0, 4));
+                int resultCount = reviews.size();
+                if (REVIEWS_PREVIEW_COUNT < resultCount) {
+                    resultCount = REVIEWS_PREVIEW_COUNT;
+                }
+                tourView.showReviews(reviews.subList(0, resultCount));
             }
 
             @Override

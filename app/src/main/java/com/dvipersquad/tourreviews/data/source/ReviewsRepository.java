@@ -34,7 +34,6 @@ public class ReviewsRepository implements ReviewsDataSource {
 
     @Override
     public void getReviews(@NonNull final Integer page, @NonNull final LoadReviewsCallback callback) {
-        Log.d(TAG, "getReviews(page:" + page + ") currentPage=" + currentPage);
         if (cachedReviews != null && !cacheIsDirty && page <= currentPage) {
             callback.onReviewsLoaded(new ArrayList<>(cachedReviews.values()), currentPage, totalPages);
         }

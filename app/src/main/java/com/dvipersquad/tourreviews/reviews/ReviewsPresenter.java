@@ -31,7 +31,6 @@ public class ReviewsPresenter implements ReviewsContract.Presenter {
 
     @Override
     public void loadReviews(boolean forceUpdate, final Integer page) {
-        Log.d(TAG, "Loading reviews page:" + page);
         if (reviewsView != null) {
             reviewsView.setLoadingIndicator(true);
         }
