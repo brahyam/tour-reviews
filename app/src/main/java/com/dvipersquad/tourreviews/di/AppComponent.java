@@ -3,6 +3,7 @@ package com.dvipersquad.tourreviews.di;
 import android.app.Application;
 
 import com.dvipersquad.tourreviews.ReviewApp;
+import com.dvipersquad.tourreviews.data.source.ReviewsRepositoryModule;
 
 import javax.inject.Singleton;
 
@@ -13,6 +14,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
 
 @Singleton
 @Component(modules = {
+        ReviewsRepositoryModule.class,
         AppModule.class,
         ActivityBindingModule.class,
         AndroidSupportInjectionModule.class})

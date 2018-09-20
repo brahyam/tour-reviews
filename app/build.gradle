@@ -33,7 +33,6 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitGsonVersion"
     implementation "com.android.support.constraint:constraint-layout:$rootProject.constraintLayoutVersion"
     implementation "com.squareup.picasso:picasso:$rootProject.picassoVersion"
-    implementation "com.sothree.slidinguppanel:library:$rootProject.slidingPanelVersion"
     annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomVersion"
 
     // Dagger dependencies

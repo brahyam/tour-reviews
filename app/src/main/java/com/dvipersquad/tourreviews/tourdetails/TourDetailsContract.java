@@ -18,14 +18,23 @@ public interface TourDetailsContract {
 
         void showTour(Tour tour);
 
+        void showReviews(List<Review> reviews);
+
+        void showAllReviewsUI();
+
+        void showLoadingError();
+
         boolean isActive();
     }
 
     interface Presenter extends BasePresenter<View> {
 
-        void takeView(TourDetailsContract.View hotelDetailsFragment);
+        void loadTour();
 
-        void dropView();
+        void loadReviews();
+
+        void openAllReviews();
+
     }
 
 }

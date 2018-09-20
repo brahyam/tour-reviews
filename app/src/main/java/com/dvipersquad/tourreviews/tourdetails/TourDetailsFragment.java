@@ -3,20 +3,26 @@ package com.dvipersquad.tourreviews.tourdetails;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
-import android.support.v4.widget.SlidingPaneLayout;
+import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.dvipersquad.tourreviews.R;
+import com.dvipersquad.tourreviews.data.Review;
 import com.dvipersquad.tourreviews.data.Tour;
 import com.dvipersquad.tourreviews.di.ActivityScoped;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
@@ -29,6 +35,7 @@ import dagger.android.support.DaggerFragment;
 @ActivityScoped
 public class TourDetailsFragment extends DaggerFragment implements TourDetailsContract.View {
 
+    private static final String TAG = TourDetailsFragment.class.getSimpleName();
     private ScrollView scrollMainPanel;
     private BottomSheetBehavior bottomSheetBehavior;
     private ImageView imgTourPicture;
@@ -36,6 +43,9 @@ public class TourDetailsFragment extends DaggerFragment implements TourDetailsCo
     private TextView txtRating;
     private TextView txtPrice;
     private TextView txtTourDescription;
+    private ProgressBar progressBarReviews;
+    private RecyclerView recyclerReviewsPreview;
+    private ReviewsAdapter adapter;
 
     @Inject
     TourDetailsContract.Presenter presenter;
@@ -48,6 +58,8 @@ public class TourDetailsFragment extends DaggerFragment implements TourDetailsCo
     public void onResume() {
         super.onResume();
         presenter.takeView(this);
+        presenter.loadTour();
+        presenter.loadReviews();
     }
 
     @Override
@@ -68,11 +80,24 @@ public class TourDetailsFragment extends DaggerFragment implements TourDetailsCo
         txtRating = root.findViewById(R.id.txtRating);
         txtPrice = root.findViewById(R.id.txtPrice);
         txtTourDescription = root.findViewById(R.id.txtTourDescription);
+        progressBarReviews = root.findViewById(R.id.progressBarReviews);
+        // init recycler
+        adapter = new ReviewsAdapter(new ArrayList<Review>(), null);
+        recyclerReviewsPreview = root.findViewById(R.id.recyclerReviewsPreview);
+        recyclerReviewsPreview.setHasFixedSize(true);
+        recyclerReviewsPreview.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerReviewsPreview.setAdapter(adapter);
+        recyclerReviewsPreview.setClickable(false);
         return root;
     }
 
     @Override
     public void setLoadingIndicator(boolean active) {
+        if (active) {
+            progressBarReviews.setVisibility(View.VISIBLE);
+        } else {
+            progressBarReviews.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -84,10 +109,27 @@ public class TourDetailsFragment extends DaggerFragment implements TourDetailsCo
         if (tour.getImageUrls() != null && !tour.getImageUrls().isEmpty()) {
             Picasso.get()
                     .load(tour.getImageUrls().get(0))
-                    .placeholder(R.drawable.placeholder)
+                    .placeholder(R.drawable.tour_placeholder)
                     .into(imgTourPicture);
         }
         bottomSheetBehavior.setPeekHeight(imgTourPicture.getBaseline());
+    }
+
+    @Override
+    public void showReviews(List<Review> reviews) {
+        adapter.addData(reviews);
+    }
+
+    @Override
+    public void showAllReviewsUI() {
+        Log.d(TAG, "Called open all reviews");
+    }
+
+    @Override
+    public void showLoadingError() {
+        if (getView() != null) {
+            Snackbar.make(getView(), getString(R.string.error_loading_reviews), Snackbar.LENGTH_SHORT);
+        }
     }
 
     @Override

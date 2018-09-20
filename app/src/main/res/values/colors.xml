@@ -8,4 +8,5 @@
     <color name="ratingIcon">#FFCB00</color>
     <color name="separator">#EFF0F1</color>
     <color name="panel_background">#FFF</color>
+    <color name="colorCardBackground">#FDFDFD</color>
 </resources>

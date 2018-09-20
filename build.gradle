@@ -51,6 +51,5 @@ ext {
     retrofitGsonVersion = '2.1.0'
     constraintLayoutVersion = '1.1.0'
     picassoVersion = '2.71828'
-    slidingPanelVersion = '3.4.0'
 }
 
