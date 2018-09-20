@@ -1,5 +1,6 @@
 package com.dvipersquad.tourreviews.tourdetails;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
@@ -19,6 +21,7 @@ import com.dvipersquad.tourreviews.R;
 import com.dvipersquad.tourreviews.data.Review;
 import com.dvipersquad.tourreviews.data.Tour;
 import com.dvipersquad.tourreviews.di.ActivityScoped;
+import com.dvipersquad.tourreviews.reviews.ReviewsActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -46,6 +49,7 @@ public class TourDetailsFragment extends DaggerFragment implements TourDetailsCo
     private ProgressBar progressBarReviews;
     private RecyclerView recyclerReviewsPreview;
     private ReviewsAdapter adapter;
+    private Button btnSeeAllReviews;
 
     @Inject
     TourDetailsContract.Presenter presenter;
@@ -81,6 +85,13 @@ public class TourDetailsFragment extends DaggerFragment implements TourDetailsCo
         txtPrice = root.findViewById(R.id.txtPrice);
         txtTourDescription = root.findViewById(R.id.txtTourDescription);
         progressBarReviews = root.findViewById(R.id.progressBarReviews);
+        btnSeeAllReviews = root.findViewById(R.id.btnSeeAllReviews);
+        btnSeeAllReviews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.openAllReviews();
+            }
+        });
         // init recycler
         adapter = new ReviewsAdapter(new ArrayList<Review>(), null);
         recyclerReviewsPreview = root.findViewById(R.id.recyclerReviewsPreview);
@@ -122,7 +133,8 @@ public class TourDetailsFragment extends DaggerFragment implements TourDetailsCo
 
     @Override
     public void showAllReviewsUI() {
-        Log.d(TAG, "Called open all reviews");
+        Intent intent = new Intent(getContext(), ReviewsActivity.class);
+        startActivity(intent);
     }
 
     @Override

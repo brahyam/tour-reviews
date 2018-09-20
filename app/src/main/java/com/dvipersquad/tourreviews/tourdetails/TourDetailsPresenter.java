@@ -93,7 +93,9 @@ final class TourDetailsPresenter implements TourDetailsContract.Presenter {
 
     @Override
     public void openAllReviews() {
-
+        if (tourView != null && tourView.isActive()) {
+            tourView.showAllReviewsUI();
+        }
     }
 
     @Override

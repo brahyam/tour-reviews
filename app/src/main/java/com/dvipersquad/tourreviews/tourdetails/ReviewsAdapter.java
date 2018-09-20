@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.dvipersquad.tourreviews.R;
 import com.dvipersquad.tourreviews.data.Review;
+import com.dvipersquad.tourreviews.utils.ExpandableTextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,10 @@ import java.util.Locale;
 public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ViewHolder> {
 
     private List<Review> reviews;
-    ReviewListener reviewListener;
+
+    private ReviewListener reviewListener;
+
+    private boolean isMessageExpandable = false;
 
     public ReviewsAdapter(List<Review> reviews, ReviewListener reviewListener) {
         this.reviews = reviews;
@@ -39,6 +43,16 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ViewHold
         holder.txtReviewDate.setText(review.getDate().toString());
         holder.txtReviewTitle.setText(review.getTitle());
         holder.txtReviewMessage.setText(review.getMessage());
+        holder.txtExpandableReviewMessage.setText(review.getMessage());
+
+        if (isMessageExpandable) {
+            holder.txtReviewMessage.setVisibility(View.GONE);
+            holder.txtExpandableReviewMessage.setVisibility(View.VISIBLE);
+            holder.txtExpandableReviewMessage.collapse();
+        } else {
+            holder.txtReviewMessage.setVisibility(View.VISIBLE);
+            holder.txtExpandableReviewMessage.setVisibility(View.GONE);
+        }
 
         if (reviewListener != null) {
             holder.layout.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +85,7 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ViewHold
         TextView txtReviewDate;
         TextView txtReviewTitle;
         TextView txtReviewMessage;
+        ExpandableTextView txtExpandableReviewMessage;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -80,10 +95,15 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ViewHold
             txtReviewDate = itemView.findViewById(R.id.txtReviewDate);
             txtReviewTitle = itemView.findViewById(R.id.txtReviewTitle);
             txtReviewMessage = itemView.findViewById(R.id.txtReviewMessage);
+            txtExpandableReviewMessage = itemView.findViewById(R.id.txtExpandableReviewMessage);
         }
     }
 
     public interface ReviewListener {
         void onItemClickListener(Review review);
+    }
+
+    public void setMessageExpandable(boolean messageExpandable) {
+        this.isMessageExpandable = messageExpandable;
     }
 }

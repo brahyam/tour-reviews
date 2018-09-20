@@ -143,17 +143,6 @@
             app:layout_constraintTop_toBottomOf="@+id/txtReviewsLabel"
             tools:listitem="@layout/reviews_item" />
 
-        <ProgressBar
-            android:id="@+id/progressBarReviews"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:foregroundTint="@color/colorPrimary"
-            android:foregroundTintMode="add"
-            app:layout_constraintTop_toTopOf="@id/recyclerReviewsPreview"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:visibility="gone" />
-
         <Button
             android:id="@+id/btnSeeAllReviews"
             android:layout_width="match_parent"
@@ -165,6 +154,15 @@
             android:textAllCaps="false"
             android:drawableTint="@color/text_subtitle"
             app:layout_constraintTop_toBottomOf="@+id/recyclerReviewsPreview" />
+
+        <ProgressBar
+            android:id="@+id/progressBarReviews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/colorPrimary"
+            app:layout_constraintTop_toTopOf="@id/recyclerReviewsPreview"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 
