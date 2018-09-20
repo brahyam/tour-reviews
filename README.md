@@ -1,7 +1,7 @@
 # GetYourGuide Challenge
 ### Summary
-Application that shows a fixed tour and user reviews belonging to that tour. It allows to reorder
-reviews by date and rate and filter then by language.
+Application that shows a fixed tour and user reviews belonging to that tour. It allows to see a 
+preview of the reviews and to load more previews on the fly.
 
 ### Design
 The application uses MVP Architecture together with dependency injection to provide the objects
