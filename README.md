@@ -9,6 +9,8 @@ needed for each view/presenter dynamically. Also it applies the repository patte
 provide access to a cache of objects which are kept in sync with a local data storage and a remote
  data storage. The local data storage provides persistence when the app subsequently opens without
   internet.
+  
+  The Reviews list is capable of infinite scrolling through pagination
 
 ### Libraries/Dependencies
 * [Dagger2](http://google.github.io/dagger/) and 
@@ -22,6 +24,9 @@ for converting json to java classes automatically
 * [Picasso](http://square.github.io/picasso/) for loading images efficiently into the views and some
  transformations
 * [Mockito](https://github.com/mockito/mockito)  for mocking classes for unit testing
+
+### Limitations
+* Current Tour is hardcoded and cannot be provided through fragment arguments
 
 
 
