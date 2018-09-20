@@ -30,7 +30,7 @@ task clean(type: Delete) {
 // All library versions
 ext {
     // Properties
-    minSdkVersion = 27
+    minSdkVersion = 23
     targetSdkVersion = 27
     compileSdkVersion = 27
 

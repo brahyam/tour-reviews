@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="card_review_reviewer_name_maxlines">1</integer>
+    <integer name="card_review_message_maxlines">2</integer>
+    <integer name="card_review_title_maxlines">1</integer>
+</resources>

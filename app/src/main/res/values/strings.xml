@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">TourReviews</string>
+    <string name="from">from:</string>
+    <string name="book_now">Book&#10;Now</string>
+    <string name="add_to_wishlist">Add to&#10;Wishlist</string>
+    <string name="share">Share</string>
+    <string name="dummy_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis, leo ac lacinia bibendum, libero tortor mattis orci, sed vestibulum risus arcu vitae massa. Cras sit amet enim ac metus faucibus volutpat non eget magna. Cras sollicitudin nisl vitae maximus condimentum. Nulla non dolor eget tortor vulputate sagittis id ac sem. Vestibulum viverra iaculis ante, ut pulvinar mauris convallis sit amet. Maecenas placerat ac eros eu pretium. Sed et erat a ipsum commodo tempor a eu urna. Sed consectetur, tellus ut fringilla cursus, eros elit dignissim elit, vitae ultricies sapien lectus quis erat. Duis rhoncus placerat leo sit amet sollicitudin.</string>
+    <string name="reviews">Reviews</string>
+    <string name="see_all_reviews">See all Reviews</string>
+    <string name="error_loading_reviews">We\'re sorry, there was an error loading the views. Please try again later</string>
 </resources>
